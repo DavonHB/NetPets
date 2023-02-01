@@ -8,7 +8,7 @@ const typeDefs = require('./schemas/typeDefs');
 const resolvers = require('./schemas/resolvers')
 const db = require('./config/connection');
 
-const PORT = process.env.PORT || '3000';
+const PORT = process.env.PORT || 3001 ;
 // create a new Apollo server and pass in our schema data
 const server = new ApolloServer({
   typeDefs,
@@ -28,13 +28,13 @@ const storeItems = ([
   [2, { priceInCents: 20000, name: 'Testing Item 2'}],
 ])
 
-// production condition
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, '/client/build'));
-  });
-}
+// // production condition
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("build"));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, '../client/build'));
+//   });
+// }
 
 app.post('/create-checkout-session', async (req, res) => {
   try {
